@@ -34,9 +34,9 @@ export default function Home() {
       const decoder = new TextDecoder()
       let result = ''
 
-      return reader?.read().then(function processText({done, value}) {
+      return reader?.read().then(function processText({done, value}):  Promise<string> {
         if (done){
-          return result
+          return Promise.resolve(result);
         }
 
         const text = decoder.decode(value || new Uint8Array(), {stream: true})
